@@ -1,4 +1,5 @@
 work_dirs
+test_results
 temp
 __pycache__
 .*
