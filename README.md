@@ -1,2 +1,2 @@
 # gap_ccot
-This is gap_ccot rep.
+This is GAP_CCoT rep.
