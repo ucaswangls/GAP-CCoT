@@ -9,6 +9,7 @@ from opts import parse_args
 from models.gap_network import GAP_CCoT
 from utils import generate_masks,Logger
 from image_utils import shift
+
 def test(args,network,mask,mask_s,src_mask,logger,writer=None,epoch=1):
 
     mask, mask_s = generate_masks(args.mask_path)
