@@ -32,10 +32,8 @@ def train(args,network,logger,mask,mask_s,writer=None):
     optimizer = optim.Adam(network.parameters(), lr=args.lr)
     scheduler = optim.lr_scheduler.StepLR(optimizer,step_size=1,gamma=0.9)
     criterion  = nn.MSELoss()
-    # criterion  = nn.L1Loss()
     criterion = criterion.to(args.device)
     src_mask = mask.to(args.device)
-    # mask_s = mask_s.to(args.device)
     mask = shift(src_mask,2).to(args.device)
     mask_s = torch.sum(mask,dim=0)
     
@@ -129,10 +127,8 @@ if __name__ == '__main__':
 
         temp_dict = {}
         for k,v in pretrained_dict.items():
-            # k = k.replace("cnn3d_net1","vit")
             if k in model_dict:
                 temp_dict[k] = v
-        # pretrained_dict = {k:v for k,v in pretrained_dict.items() if k in model_dict}
         pretrained_dict = temp_dict
         for k in pretrained_dict: 
             if model_dict[k].shape != pretrained_dict[k].shape:
@@ -140,7 +136,6 @@ if __name__ == '__main__':
                 print("layer: {} parameters size is not same!".format(k))
         model_dict.update(pretrained_dict)
         network.load_state_dict(model_dict,strict=False)
-        # torch.save(network.vit.state_dict(),"vit.pth")
     else:            
         logger.info("No pre_train model")
 

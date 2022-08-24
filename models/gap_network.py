@@ -16,7 +16,6 @@ class GAP_CCoT(nn.Module):
         self.unet7 = CotBlock(ratio,channels_list)
         self.unet8 = CotBlock(ratio,channels_list)
         self.unet9 = CotBlock(ratio,channels_list)
-     
         self.shift=2
         
     def forward(self, y, Phi, Phi_s):
