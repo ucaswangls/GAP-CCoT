@@ -16,9 +16,11 @@ higher reconstruction quality (>2dB in PSNR on simulated benchmark datasets) and
 running time than existing SOTA algorithms by a large margin. The code and models are publicly
 available at https://github.com/ucaswangls/GAP-CCoT.
 
-## Testing Result on Six Simulation Dataset
+## Testing Result on Simulation Dataset
 <div>
+  <center>
   <img src="doc/sim2.png" width = "50%" align = left><img src="doc/sim9.png" width = "50%" align = right> 
+  </center>
 </div>
 
 ## Environment
