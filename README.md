@@ -17,10 +17,8 @@ running time than existing SOTA algorithms by a large margin. The code and model
 available at https://github.com/ucaswangls/GAP-CCoT.
 
 ## Testing Result on Six Simulation Dataset
-<div align="center">
-  <img src="doc/sim2.png" width="1000"/> 
-  Fig. Reconstruction results of GAP-CCoT and other spectral reconstruction algorithms (λ-net, HSSP, TSA-net, GAP-net, DGSMP,
-PnP-DIP-HSI) in Scene 3 and Scene 9. 
+<div>
+  <img src="doc/sim2.png" width = "50%" align = left><img src="doc/sim9.png" width = "50%" align = right> 
 </div>
 
 ## Environment
@@ -44,8 +42,10 @@ python test.py
 ## Training GAP-CCoT
 Support multi GPUs and single GPU training efficiently.  
 
-Launch multi GPU training by the statement below:
+For the training dataset, please refer to  to download. 
+For model training. First, refer to [TSA-net](https://github.com/mengziyi64/TSA-Net) to download the training dataset, and then modify the --train_data_path value in the opt.py file to point to the training dataset path.
 
+Launch multi GPU training by the statement below:
 ```
 CUDA_VISIBLE_DEVICES=0,1,2,3 python -m torch.distributed.launch --nproc_per_node=4  --master_port=3278 train.py --distributed=True
 ```
