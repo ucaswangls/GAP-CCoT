@@ -1,4 +1,6 @@
-# Spectral Compressive Imaging Reconstruction Using Convolution and Contextual Transformer 
+# GAP-CCoT for CASSI
+This repo is the implementation of "Snapshot Spectral Compressive Imaging Reconstruction Using Convolution and Contextual Transformer". [PDF](https://opg.optica.org/prj/fulltext.cfm?uri=prj-10-8-1848&id=480307)
+
 ## Abstract
 Spectral compressive imaging (SCI) is able to encode the high-dimensional hyperspectral image
 into a two-dimensional (2D) snapshot measurement, and then use algorithms to reconstruct
