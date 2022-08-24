@@ -30,7 +30,6 @@ class TrainData(Dataset):
         meas = gen_meas(crop_img,self.mask)
         nc = self.mask.shape[0]
         gt = crop_img[0:nc] 
-        # gt = shift(torch.from_numpy(gt))
         return meas,gt
 
 
@@ -55,32 +54,6 @@ class TestData(Dataset):
 
         nc = self.mask.shape[0]
         gt = img[0:nc] 
-        # gt = shift(torch.from_numpy(gt))
         return meas,gt
-    def __len__(self):
-        return len(self.scene_list)
-
-class TestRealData(Dataset):
-    def __init__(self,data_path):
-        self.data_path = data_path
-        self.scene_list = []
-        for scene in os.listdir(data_path):
-            self.scene_list.append(scene)
-        self.scene_list.sort()
-
-    def __getitem__(self,index):
-        scene_path = osp.join(self.data_path,self.scene_list[index])
-        img_dict = scio.loadmat(scene_path)
-        
-        img = img_dict['meas_real']*8
-        # print("max:",np.max(img))
-        # print("min:",np.min(img))
-        # img = img.astype(np.float32).transpose((2,0,1))
-        # meas = gen_meas(img,self.mask)
-
-        # nc = self.mask.shape[0]
-        # gt = img[0:nc] 
-        # gt = shift(torch.from_numpy(gt))
-        return img
     def __len__(self):
         return len(self.scene_list)

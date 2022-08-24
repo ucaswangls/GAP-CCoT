@@ -3,7 +3,7 @@ import torch
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--epochs",type=int,default=100)
+    parser.add_argument("--epochs",type=int,default=200)
     parser.add_argument("--batch_size",type=int,default=2)
     parser.add_argument("--num_workers",type=int,default=4)
     parser.add_argument("--lr",type=float,default=0.0001)
