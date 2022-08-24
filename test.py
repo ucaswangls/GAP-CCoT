@@ -14,7 +14,6 @@ def test(args,network,mask,mask_s,src_mask,logger,writer=None,epoch=1):
 
     mask, mask_s = generate_masks(args.mask_path)
     src_mask = mask.to(args.device)
-    # mask_s = mask_s.to(args.device)
     mask = shift(src_mask,2).to(args.device)
     mask_s = torch.sum(mask,dim=0)
     network = network.eval()
@@ -33,13 +32,11 @@ def test(args,network,mask,mask_s,src_mask,logger,writer=None,epoch=1):
         batch_size,frames,height,width = gt.shape
 
         gt = gt.float().numpy()
-        # Phi_s = mask_s.expand([batch_size,height,width])
         Phi = mask.repeat([batch_size, 1, 1, 1])
         Phi_s = mask_s.repeat([batch_size, 1, 1])
        
         with torch.no_grad():
             out_pic_list = network(meas, Phi, Phi_s)
-            # out_pic_list = network(meas)
             out_pic = out_pic_list[-1].cpu().numpy()
             psnr_t = 0
             ssim_t = 0

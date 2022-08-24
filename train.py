@@ -87,12 +87,12 @@ def train(args,network,logger,mask,mask_s,writer=None):
             logger.info("epoch: {}, avg_loss: {:.5f}, time: {:.2f}s.\n".format(epoch,epoch_loss/(iteration+1),end_time-start_time))
 
         if rank==0 and (epoch % args.save_model_step) == 0:
-            if not osp.exists(args.checkpoint):
-                os.makedirs(args.checkpoint)
+            if not osp.exists(args.checkpoints):
+                os.makedirs(args.checkpoints)
             if args.distributed:
-                torch.save(network.module.state_dict(),osp.join(args.checkpoint,"epoch_"+str(epoch)+".pth")) 
+                torch.save(network.module.state_dict(),osp.join(args.checkpoints,"epoch_"+str(epoch)+".pth")) 
             else:
-                torch.save(network.state_dict(),osp.join(args.checkpoint,"epoch_"+str(epoch)+".pth")) 
+                torch.save(network.state_dict(),osp.join(args.checkpoints,"epoch_"+str(epoch)+".pth")) 
         if rank==0 and args.test_flag:
             logger.info("epoch: {}, psnr and ssim test results:".format(epoch))
             if args.distributed:

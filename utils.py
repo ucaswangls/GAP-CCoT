@@ -50,14 +50,6 @@ def compare_ssim(img1, img2):
             return np.array(ssims).mean()
         elif img1.shape[2] == 1:
             return ssim(np.squeeze(img1), np.squeeze(img2))
-# def compare_ssim(img1,img2):
-#     img1 = torch.from_numpy(img1)
-#     img2 = torch.from_numpy(img2)
-#     img1 = torch.unsqueeze(img1,0)
-#     img2 = torch.unsqueeze(img2,0)
-#     return ssim(torch.unsqueeze(img1,0), torch.unsqueeze(img2,0))
-
-
 
 def compare_psnr(img1, img2, shave_border=0):
     height, width = img1.shape[:2]

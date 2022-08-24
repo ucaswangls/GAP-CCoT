@@ -8,13 +8,14 @@ def shift(inputs, step=2):
     for i in range(nC):
         output[i,:,step*i:step*i+col] = inputs[i,:,:]
     return output
+    
 def batch_shift(inputs, step=2):
     [b,nC, row, col] = inputs.shape
     output = torch.zeros(b,nC, row, col+(nC-1)*step).to(inputs.device)
     for i in range(nC):
         output[:,i,:,step*i:step*i+col] = inputs[:,i,:,:]
     return output
-def batch_shift_back(inputs,step=2):          # input [bs,256,310]  output [bs, 28, 256, 256]
+def batch_shift_back(inputs,step=2):
     [b,c,row, col] = inputs.shape
     output = torch.zeros(b,c, row, col-(c-1)*step).to(inputs.device)
     for i in range(c):
@@ -23,11 +24,7 @@ def batch_shift_back(inputs,step=2):          # input [bs,256,310]  output [bs, 
 def gen_meas(data, mask3d):
     nC = data.shape[0]
     temp = shift(mask3d *data, 2)
-    # meas = torch.sum(temp, 0)/nC*2          # meas scale
-    meas = torch.sum(temp, 0)          # meas scale
-    
-    # y_temp = shift_back(meas,nC)
-    # meas = torch.mul(y_temp, mask3d)
+    meas = torch.sum(temp, 0)         
     return meas 
 
 def shuffle_crop(train_data,size=660):
